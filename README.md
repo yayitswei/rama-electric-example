@@ -4,7 +4,7 @@ Adapted from @eneroth's gist: https://gist.github.com/eneroth/bb22966fa76f32caae
 Discussion: https://clojurians.slack.com/archives/C7Q9GSHFV/p1694097686874189
 
 ```
-$ clj -A:dev -X user/main
+$ clojure -M:dev
 
 Starting Electric compiler and server...
 shadow-cljs - server version: 2.20.1 running at http://localhost:9630

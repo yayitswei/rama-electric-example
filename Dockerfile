@@ -2,8 +2,8 @@ FROM clojure:openjdk-11-tools-deps AS clojure-deps
 WORKDIR /app
 COPY deps.edn deps.edn
 COPY src-build src-build
-RUN clojure -A:dev -M -e :ok        # preload deps
-RUN clojure -T:build noop           # preload build deps
+RUN clojure -X:deps prep        # preload deps
+RUN clojure -P -M:dev:build           # preload build deps
 
 FROM clojure:openjdk-11-tools-deps AS build
 WORKDIR /app
