@@ -1,6 +1,6 @@
 (ns prod
   (:gen-class)
-  (:require app.todo-list ; prod only (app is not loaded by shadow in prod)
+  (:require app.client.root ; prod only (app is not loaded by shadow in prod)
             clojure.string
             app.electric-server-java8-jetty9))
 
