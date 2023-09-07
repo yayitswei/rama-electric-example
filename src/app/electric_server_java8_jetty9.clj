@@ -11,6 +11,7 @@
             [ring.middleware.resource :refer [wrap-resource]]
             [ring.util.response :as res]
             [clojure.string :as str]
+            [mount.core :refer [defstate] :as mount]
             [clojure.edn :as edn])
   (:import [java.io IOException]
            [java.net BindException]
@@ -112,7 +113,8 @@
       (.setHandler (.getHandler server)))))
 
 (defn start-server! [{:keys [port resources-path manifest-path]
-                                   :or   {port            8080
+                                   :or   {host            "0.0.0.0"
+                                          port            8080
                                           resources-path "public"
                                           manifest-path  "public/js/manifest.edn"}
                                    :as   config}]
@@ -139,3 +141,9 @@
             (start-server! (update config :port inc)))
         (throw err)))))
 
+
+(defstate http-server
+  :start
+  (start-server! nil)
+  
+  :stop (.stop http-server))

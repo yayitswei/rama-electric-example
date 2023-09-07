@@ -3,19 +3,16 @@
   app.client.root
   (:require
     #?@(:clj  [[app.modules.wordcount :refer [->SimpleWordCountModule]]
-               [app.helpers.rama :as rama]])
+               [app.helpers.rama :as rama]
+               [app.cluster]])
     [hyperfiddle.electric-dom2 :as dom]
     [clojure.string :as str]
     [hyperfiddle.electric :as e])
   #?(:clj (:import
             [com.rpl.rama Path]
-            [com.rpl.rama.test LaunchConfig InProcessCluster]
             [app.modules.wordcount SimpleWordCountModule])))
 
-#?(:clj (defonce cluster
-          (let [c (InProcessCluster/create)]
-            (.launchModule c (->SimpleWordCountModule) (LaunchConfig. 1 1))
-            c)))
+#?(:clj (def cluster @app.cluster/cluster))
 
 (e/def pstate-words #?(:clj (rama/pstate cluster SimpleWordCountModule "$$words")))
 (e/def pstate-word-counts #?(:clj (rama/pstate cluster SimpleWordCountModule "$$word-counts")))

@@ -4,7 +4,7 @@
     [taoensso.timbre :as timbre])
   (:import
     [com.rpl.rama Depot PState Path ProxyState$Callback RamaModule]
-    [com.rpl.rama.test InProcessCluster LaunchConfig]
+    [com.rpl.rama.test InProcessCluster]
     [hyperfiddle.electric Failure Pending]))
 
 
@@ -38,3 +38,5 @@
                         (.close @p)))))
     (m/reductions {} (Failure. (Pending.)))
     (m/relieve {})))
+
+
