@@ -1,20 +1,23 @@
 (ns app.electric-server-java8-jetty9
   "for java 8 compat, which is macos system java"
-  (:require [clojure.java.io :as io]
-            [hyperfiddle.electric-jetty-adapter :as adapter]
-            [clojure.tools.logging :as log]
-            [ring.adapter.jetty9 :as ring]
-            [ring.middleware.basic-authentication :as auth]
-            [ring.middleware.content-type :refer [wrap-content-type]]
-            [ring.middleware.cookies :as cookies]
-            [ring.middleware.params :refer [wrap-params]]
-            [ring.middleware.resource :refer [wrap-resource]]
-            [ring.util.response :as res]
-            [clojure.string :as str]
-            [clojure.edn :as edn])
-  (:import [java.io IOException]
-           [java.net BindException]
-           [org.eclipse.jetty.server.handler.gzip GzipHandler]))
+  (:require
+    [app.client.root]
+    [clojure.edn :as edn]
+    [clojure.java.io :as io]
+    [clojure.string :as str]
+    [clojure.tools.logging :as log]
+    [hyperfiddle.electric-jetty-adapter :as adapter]
+    [ring.adapter.jetty9 :as ring]
+    [ring.middleware.basic-authentication :as auth]
+    [ring.middleware.content-type :refer [wrap-content-type]]
+    [ring.middleware.cookies :as cookies]
+    [ring.middleware.params :refer [wrap-params]]
+    [ring.middleware.resource :refer [wrap-resource]]
+    [ring.util.response :as res])
+  (:import
+    [java.io IOException]
+    [java.net BindException]
+    [org.eclipse.jetty.server.handler.gzip GzipHandler]))
 
 (defn authenticate [username password] username) ; demo (accept-all) authentication
 

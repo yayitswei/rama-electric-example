@@ -1,4 +1,5 @@
-(ns user) ; Must be ".clj" file, Clojure doesn't auto-load user.cljc
+(ns user ; Must be ".clj" file, Clojure doesn't auto-load user.cljc
+  (:gen-class))
 
 ; lazy load dev stuff - for faster REPL startup and cleaner dev classpath
 (def start-electric-server! (delay @(requiring-resolve 'app.electric-server-java8-jetty9/start-server!)))
@@ -8,7 +9,7 @@
 (def electric-server-config
   {:host "0.0.0.0", :port 8080, :resources-path "public"})
 
-(defn main [& args]
+(defn -main [& args]
   (println "Starting Electric compiler and server...")
   (@shadow-start!) ; serves index.html as well
   (@shadow-watch :dev) ; depends on shadow server
@@ -20,7 +21,7 @@
 ; WARNING: make sure your REPL and shadow-cljs are sharing the same JVM!
 
 (comment
-  (main) ; Electric Clojure(JVM) REPL entrypoint
+  (-main) ; Electric Clojure(JVM) REPL entrypoint
   (hyperfiddle.rcf/enable!) ; turn on RCF after all transitive deps have loaded
   (shadow.cljs.devtools.api/repl :dev) ; shadow server hosts the cljs repl
   ; connect a second REPL instance to it

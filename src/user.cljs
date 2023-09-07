@@ -1,13 +1,13 @@
 (ns ^:dev/always user ; Electric currently needs to rebuild everything when any file changes. Will fix
   (:require
-    app.client.root
-    hyperfiddle.electric
-    hyperfiddle.electric-dom2))
+    [app.client.root :refer [Root]]
+    [hyperfiddle.electric]
+    [hyperfiddle.electric-dom2]))
 
 (def electric-main
   (hyperfiddle.electric/boot ; Electric macroexpansion - Clojure to signals compiler
     (binding [hyperfiddle.electric-dom2/node js/document.body]
-      (app.client.root/Root.))))
+      (Root.))))
 
 (defonce reactor nil)
 
