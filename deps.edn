@@ -5,6 +5,7 @@
              info.sunng/ring-jetty9-adapter                      {:mvn/version "0.14.3" ; (Jetty 9) is Java 8 compatible;
                                                                   ;:mvn/version "0.17.7" ; (Jetty 10) is NOT Java 8 compatible
                                                                   :exclusions  [org.slf4j/slf4j-api info.sunng/ring-jetty9-adapter-http3]} ; no need
+             org.clojure/clojure {:mvn/version "1.11.1"}
              org.clojure/clojurescript                           {:mvn/version "1.11.60"}
              org.clojure/tools.logging                           {:mvn/version "1.2.4"}
              ch.qos.logback/logback-classic                      {:mvn/version "1.2.11"}
@@ -24,3 +25,4 @@
                                    io.github.seancorfield/build-clj {:git/tag "v0.8.0" :git/sha "9bd8b8a"}
                                    thheller/shadow-cljs             {:mvn/version "2.25.2"}}
                      :jvm-opts    ["-Xss2m"]}}}
+
